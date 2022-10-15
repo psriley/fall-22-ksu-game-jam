@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7491590bdfbb36f4ba74152ecf3defbc, type: 3}
   m_Name: BlitRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     mat: {fileID: 2100000, guid: 68f05e008b1350f44a79d0923f99d744, type: 2}
 --- !u!114 &-4128211535990536990
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7491590bdfbb36f4ba74152ecf3defbc, type: 3}
   m_Name: BlitRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     mat: {fileID: 2100000, guid: 0c0cfaed4f0be9b408ab59b6462a094d, type: 2}
 --- !u!114 &5698374596994880137
@@ -117,6 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7491590bdfbb36f4ba74152ecf3defbc, type: 3}
   m_Name: BlitRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     mat: {fileID: 2100000, guid: 65e3e3f8ad02a76408f3a0fcc40eeb97, type: 2}
