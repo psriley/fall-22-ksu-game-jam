@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5887252053063052736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7491590bdfbb36f4ba74152ecf3defbc, type: 3}
+  m_Name: BlitRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    mat: {fileID: 2100000, guid: 0c0cfaed4f0be9b408ab59b6462a094d, type: 2}
 --- !u!114 &-4128211535990536990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,8 +43,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
-  m_RendererFeatures: []
-  m_RendererFeatureMap: 
+  m_RendererFeatures:
+  - {fileID: -5887252053063052736}
+  m_RendererFeatureMap: 40d2fc2173474cae
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
