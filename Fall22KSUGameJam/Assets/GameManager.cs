@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            holdDownTime += Time.deltaTime;
+            holdDownTime += 0.2f * Time.deltaTime;
             fillImage.fillAmount = holdDownTime;
 
             if (fillImage.fillAmount >= 0.2f)
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E))
         {
-            holdDownTime -= Time.deltaTime;
+            holdDownTime -= 0.01f * Time.deltaTime;
             fillImage.fillAmount = holdDownTime;
 
             /*fillImage.fillAmount = holdDownTime - value;
