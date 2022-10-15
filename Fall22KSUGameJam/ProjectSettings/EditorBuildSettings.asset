@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EnemyAI.unity
     guid: 7f0cd73a3c59ee84882be1e0ccd6c095
+  - enabled: 1
+    path: Assets/Scenes/FOV.unity
+    guid: 357a92b8785d5b04684f39c0bdfae21d
   m_configObjects: {}

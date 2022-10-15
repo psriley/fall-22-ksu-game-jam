@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class PlayerMovement : PlayerController
 {
+    public Camera cam;
+
+    Vector2 movement;
+    Vector2 mousePos;
+
     protected override void Awake()
     {
         base.Awake();
@@ -13,13 +18,17 @@ public class PlayerMovement : PlayerController
 
     private void Update()
     {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-        Vector3 movement = new Vector3(walkSpeed.x * inputX, walkSpeed.y * inputY, 0);
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+    }
 
-        movement *= Time.deltaTime;
+    private void FixedUpdate() {
+        rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
 
-        transform.Translate(movement);
+        Vector2 lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f;
+        rb.rotation = angle;
     }
 }

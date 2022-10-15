@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Vector2 walkSpeed = new Vector2(4f, 4f);
+    public float walkSpeed = 5f;
 
     public Rigidbody2D rb;
     public GameManager manager;
