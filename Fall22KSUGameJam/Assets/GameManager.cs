@@ -6,26 +6,56 @@ using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject pauseMenu;
+    public bool paused;
     public float holdDownTime;
     public int howOverloaded = 0; // 0 = not, 1 = kinda, 2 = very, 3 = max
+    public SpriteRenderer[] enemies;
 
     [SerializeField] Image fillImage;
     public float[] fillAmountTriggers;
     [SerializeField] ScriptableRendererFeature[] features;
     [SerializeField] PlayerMovement movement;
 
+    private void Awake() {
+        paused = false;
+        pauseMenu.SetActive(false);
+    }
+
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (paused){
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+                paused = false;
+            }
+            else {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                paused = true;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+            foreach (SpriteRenderer enemy in enemies) {
+                enemy.color = Color.white;
+                enemy.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            }
         }
 
         if (Input.GetMouseButton(0))
         {
+            foreach (SpriteRenderer enemy in enemies) {
+                enemy.color = Color.red;
+                enemy.maskInteraction = SpriteMaskInteraction.None;
+            }
+
             holdDownTime += 0.2f * Time.deltaTime;
             holdDownTime = Mathf.Clamp01(holdDownTime);
             fillImage.fillAmount = holdDownTime;

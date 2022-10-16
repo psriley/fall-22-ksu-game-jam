@@ -7,14 +7,19 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject instructionsMenu;
+    [SerializeField] GameObject failMenu;
+    [SerializeField] GameObject winMenu;
 
     private void Awake() {
         mainMenu.SetActive(true);
         instructionsMenu.SetActive(false);
+        failMenu.SetActive(false);
+        winMenu.SetActive(false);
     }
 
     public void Play() {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
     }
 
     public void HowToPlay() {
@@ -23,6 +28,8 @@ public class MenuManager : MonoBehaviour
     }
 
     public void Quit() {
+        failMenu.SetActive(false);
+        Time.timeScale = 1;
         Application.Quit();
         Debug.Log("Quitting...");
     }
@@ -30,5 +37,21 @@ public class MenuManager : MonoBehaviour
     public void Back() {
         mainMenu.SetActive(true);
         instructionsMenu.SetActive(false);
+    }
+
+    public void BackToMenu() {
+        failMenu.SetActive(false);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
+    public void ShowFail() {
+        Time.timeScale = 0;
+        failMenu.SetActive(true);
+    }
+
+    public void ShowWin() {
+        Time.timeScale = 0;
+        winMenu.SetActive(true);
     }
 }

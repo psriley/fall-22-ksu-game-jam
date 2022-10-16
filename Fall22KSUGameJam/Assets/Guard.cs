@@ -32,7 +32,7 @@ public class Guard : MonoBehaviour
             lineOfSight.SetPosition(1, hitInfo.point);
 
             if (hitInfo.collider.CompareTag("Player")){
-                Debug.Log("Found you!");
+                FindObjectOfType<MenuManager>().ShowFail();
             }
         }
         else {
