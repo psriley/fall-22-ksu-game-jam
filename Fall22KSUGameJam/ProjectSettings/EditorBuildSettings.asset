@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/EnemyAI.unity
     guid: 7f0cd73a3c59ee84882be1e0ccd6c095
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FOV.unity
     guid: 357a92b8785d5b04684f39c0bdfae21d
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: b255c44f2d2624895b0cd0b36901329d
   m_configObjects: {}
