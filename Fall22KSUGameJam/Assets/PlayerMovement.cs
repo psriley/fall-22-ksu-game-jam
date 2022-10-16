@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : PlayerController
 {
+    [SerializeField] private FOV fov;
+
     public Camera cam;
 
     Vector2 movement;
@@ -27,7 +29,11 @@ public class PlayerMovement : PlayerController
     private void FixedUpdate() {
         rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
 
-        Vector2 lookDir = mousePos - rb.position;
+        Vector3 lookDir = (mousePos - rb.position);
+
+        fov.SetAimDirection(lookDir);
+        fov.SetOrigin(rb.position);
+
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f;
         rb.rotation = angle;
     }
