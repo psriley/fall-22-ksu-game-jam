@@ -161,7 +161,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -271,7 +271,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -360,7 +360,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -420,9 +420,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e299aa167d8d2df40a9ef924287c4652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: {x: 4, y: 4}
+  walkSpeed: 5
   rb: {fileID: 742476522}
   manager: {fileID: 1792241795}
+  fov: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!114 &742476521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,7 +608,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -682,7 +684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f338f32eb8a87418914c7cbb6120ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdDownTime: 0
+  howOverloaded: 0
   fillImage: {fileID: 0}
+  fillAmountTriggers: []
+  features: []
+  movement: {fileID: 0}
 --- !u!4 &1792241796
 Transform:
   m_ObjectHideFlags: 0
