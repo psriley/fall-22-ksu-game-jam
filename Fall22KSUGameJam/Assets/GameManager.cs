@@ -2,45 +2,115 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
-    private float holdDownTime;
+    public float holdDownTime;
+    public int howOverloaded = 0; // 0 = not, 1 = kinda, 2 = very, 3 = max
+
     [SerializeField] Image fillImage;
+    public float[] fillAmountTriggers;
+    [SerializeField] ScriptableRendererFeature[] features;
+    [SerializeField] PlayerMovement movement;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Press start.");
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("Time: " + holdDownTime);
-            Debug.Log("Fill Amount: " + fillImage.fillAmount);
         }
 
         if (Input.GetMouseButton(0))
         {
             holdDownTime += 0.2f * Time.deltaTime;
+            holdDownTime = Mathf.Clamp01(holdDownTime);
             fillImage.fillAmount = holdDownTime;
 
-            if (fillImage.fillAmount >= 0.2f)
+            if (fillImage.fillAmount >= fillAmountTriggers[1] &&
+                fillImage.fillAmount < fillAmountTriggers[2])
             {
-                Debug.Log("Fired 2 second event");
+                howOverloaded = 1;
             }
+            if (fillImage.fillAmount >= fillAmountTriggers[2] &&
+                fillImage.fillAmount < fillAmountTriggers[3])
+            {
+                howOverloaded = 2;
+            }
+            if (fillImage.fillAmount >= fillAmountTriggers[3])
+            {
+                howOverloaded = 3;
+            }
+
+            Debug.Log(fillImage.fillAmount);
+            // if (fillAmount.fillAmount >= fillAmountTriggers[2] &&
+            //     fillAmount.fillAmount < fillAmountTriggers[3])
+            // {
+            //     howOverloaded = 3;
+            // }
+            // if (fillAmount.fillAmount >= fillAmountTriggers[3])
+            // {
+            //     howOverloaded = 4;
+            // }
         }
 
 
         if (Input.GetKey(KeyCode.E))
         {
-            holdDownTime -= 0.01f * Time.deltaTime;
+            movement.enabled = false;
+            holdDownTime -= 0.08f * Time.deltaTime;
+            holdDownTime = Mathf.Clamp01(holdDownTime);
             fillImage.fillAmount = holdDownTime;
 
-            /*fillImage.fillAmount = holdDownTime - value;
-            holdDownTime -= Time.deltaTime;
-            fillImage.fillAmount = holdDownTime;*/
+            if (fillImage.fillAmount >= fillAmountTriggers[0] &&
+                fillImage.fillAmount < fillAmountTriggers[1])
+            {
+                howOverloaded = 0;
+            }
+            if (fillImage.fillAmount >= fillAmountTriggers[1] &&
+                fillImage.fillAmount < fillAmountTriggers[2])
+            {
+                howOverloaded = 1;
+            }
+            if (fillImage.fillAmount >= fillAmountTriggers[2] &&
+                fillImage.fillAmount < fillAmountTriggers[3])
+            {
+                howOverloaded = 2;
+            }
+            
+            Debug.Log(fillImage.fillAmount);
+        }
+        if (!(Input.GetKey(KeyCode.E))) 
+        {
+            movement.enabled = true;
+        }
+
+        if (howOverloaded == 0)
+        {
+            features[0].SetActive(false);
+            features[1].SetActive(false);
+            features[2].SetActive(false);
+        }
+        else if (howOverloaded == 1)
+        {
+            features[0].SetActive(true);
+            features[1].SetActive(false);
+            features[2].SetActive(false);
+        }
+        else if (howOverloaded == 2)
+        {
+            features[0].SetActive(true);
+            features[1].SetActive(true);
+            features[2].SetActive(false);
+        }
+        else if (howOverloaded == 3)
+        {
+            features[0].SetActive(true);
+            features[1].SetActive(true);
+            features[2].SetActive(true);
         }
     }
 }
