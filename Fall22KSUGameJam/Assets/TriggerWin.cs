@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class TriggerWin : MonoBehaviour
 {
-    private MenuManager menu;
+    private MenuManager mm;
+    private GameManager gm;
 
     private void Awake() {
-        menu = FindObjectOfType<MenuManager>();
+        mm = FindObjectOfType<MenuManager>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            menu.ShowWin();
+            Destroy(gameObject);
+            if (gm.GetCat()) {
+                mm.ShowWin();
+            }
+            //mm.ShowWin();
         }
     }
 }

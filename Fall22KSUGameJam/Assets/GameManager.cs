@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,12 @@ public class GameManager : MonoBehaviour
     public float holdDownTime;
     public int howOverloaded = 0; // 0 = not, 1 = kinda, 2 = very, 3 = max
     public SpriteRenderer[] enemies;
+    [SerializeField] int cats;
+    [SerializeField] GameObject text;
+    public AudioSource a;
+    public AudioClip normal;
+    public AudioClip boosted;
+    public bool swap;
 
     [SerializeField] Image fillImage;
     public float[] fillAmountTriggers;
@@ -20,6 +27,7 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         paused = false;
         pauseMenu.SetActive(false);
+        a.clip = normal;
     }
 
     void Update()
@@ -120,27 +128,69 @@ public class GameManager : MonoBehaviour
 
         if (howOverloaded == 0)
         {
+            if (a.clip != normal) {
+                a.clip = normal;
+                swap = true;
+            }
             features[0].SetActive(false);
             features[1].SetActive(false);
             features[2].SetActive(false);
         }
         else if (howOverloaded == 1)
         {
+            if (a.clip != normal) {
+                a.clip = normal;
+                swap = true;
+            }
             features[0].SetActive(true);
             features[1].SetActive(false);
             features[2].SetActive(false);
         }
         else if (howOverloaded == 2)
         {
+            if (a.clip != boosted) {
+                a.clip = boosted;
+                swap = true;
+            }
             features[0].SetActive(true);
             features[1].SetActive(true);
             features[2].SetActive(false);
         }
         else if (howOverloaded == 3)
         {
+            if (a.clip != boosted) {
+                a.clip = boosted;
+                swap = true;
+            }
             features[0].SetActive(true);
             features[1].SetActive(true);
             features[2].SetActive(true);
         }
+
+        if (swap) {
+            audio.Play();
+            swap = false;
+        }
+    }
+
+    public bool GetCat() {
+        if (cats > 0) {
+            cats--;
+            ShowUI();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public void ShowUI() {
+        text.SetActive(true);
+        StartCoroutine("Wait");
+    }
+
+    IEnumerator Wait() {
+        yield return new WaitForSeconds(2f);
+        text.SetActive(false);
     }
 }
