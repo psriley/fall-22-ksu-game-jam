@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         paused = false;
         pauseMenu.SetActive(false);
+        a = GetComponent<AudioSource>();
         a.clip = normal;
     }
 
@@ -168,7 +169,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (swap) {
-            audio.Play();
+            a.Play();
             swap = false;
         }
     }
